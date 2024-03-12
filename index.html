@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumQuill Text Transformer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: none; /* Disable resizing */
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0b7dda;
+        }
+
+        #outputText {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QuantumQuill Text Transformer</h1>
+        <textarea id="inputText" placeholder="Type your text here..."></textarea>
+        <button onclick="applyTransformation('original')">Original</button>
+        <button onclick="applyTransformation('uppercase')">Uppercase</button>
+        <button onclick="applyTransformation('lowercase')">Lowercase</button>
+        <button onclick="applyTransformation('reverse')">Reverse</button>
+        <div id="outputText"></div>
+    </div>
+    <script>
+        function applyTransformation(type){
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            let TransformedText;
+
+            switch(type){
+                case 'uppercase':
+                    TransformedText = inputText.value.toUpperCase();
+                    break;
+                case 'lowercase':
+                    TransformedText = inputText.value.toLowerCase();
+                    break;
+                case 'reverse':
+                    TransformedText = reverseText(inputText.value);
+                    break;
+                default:
+                    TransformedText = inputText.value;
+            }
+                
+            outputText.innerHTML = TransformedText;
+            
+            // Disable textarea after applying transformation
+            inputText.setAttribute('disabled', 'true');
+        }
+
+        function reverseText(text){
+            return text.split('').reverse().join('');
+        }
+    </script>
+</body>
+</html>
